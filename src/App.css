@@ -13,14 +13,6 @@
   }
 }
 
-.App-background {
-  background-image: url("../src/img/fondo1.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  background-size: cover;
-}
-
 .App-link {
   color: #61dafb;
 }
@@ -34,55 +26,12 @@
   }
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-}
-header .conteinerLogo #logoBeirut {
-  width: 270px;
-  height: 180px;
-}
-header .conteinerNav li #carrito {
-  width: 50px;
-  height: 50px;
-}
-header .conteinerNav {
-  padding-top: 40px;
-}
-header .conteinerNav li {
-  display: inline;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-header .conteinerNav li a {
-  color: #cee0d4;
-  font-size: 32px;
-  font-family: "Merienda", cursive;
-  text-decoration: none;
-}
-header .conteinerNav li a:hover {
-  color: rgba(68, 158, 95, 0.89);
+.cuerpo .conteinerImagenes {
+  padding-left: 60px;
+  padding-bottom: 20px;
 }
 
-.cuerpo .textoMain {
-  color: #cee0d4;
-  font-size: 70px;
-  font-family: "Merienda", cursive;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  padding-top: 100px;
-  padding-bottom: 100px;
-}
-
-.cuerpo .whatsapp {
-  display: flex;
-  justify-content: flex-end;
-  align-content: flex-end;
-  padding-top: 60px;
-  padding-bottom: 50px;
-}
-.cuerpo .whatsapp #logoWhatsapp {
-  height: 50px;
-  width: 50px;
+.cuerpo .conteinerImagenes .tamanioImg {
+  height: 250px;
+  width: 250px;
 }

@@ -1,0 +1,36 @@
+header {
+  display: flex;
+  justify-content: space-between;
+}
+header .conteinerLogo #logoBeirut {
+  width: 270px;
+  height: 180px;
+}
+header .conteinerNav li #carrito {
+  width: 50px;
+  height: 50px;
+}
+header .conteinerNav {
+  padding-top: 40px;
+}
+header .conteinerNav li {
+  display: inline;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+header .conteinerNav li a {
+  color: #cee0d4;
+  font-size: 32px;
+  font-family: "Merienda", cursive;
+  text-decoration: none;
+}
+header .conteinerNav li a:hover {
+  color: rgba(68, 158, 95, 0.89);
+}
+
+.body {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}

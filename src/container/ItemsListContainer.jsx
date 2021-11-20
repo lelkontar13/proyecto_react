@@ -1,18 +1,41 @@
 import React from "react";
-import Whatsapp from "../img/LogoWhatsapp.png";
+import { useState, useEffect } from "react";
+import { getFetch } from "../helpers/getFetch";
 
 function ItemsListContainer() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getFetch
+      .then((data) => {
+        console.log("Llamada");
+        setProducts(data);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
+
+    return () => {
+      console.log("clean");
+    };
+  }, []);
+
   return (
-    <main class="cuerpo">
-      <div class="textoMain">
-        <p>¿Ya probaste nuestra comida?</p>
-      </div>
-      <div class="whatsapp">
-        <a href="https://wa.me/c/5491132380968">
-          <img id="logoWhatsapp" src={Whatsapp} alt="Logo Whatsapp" />
-        </a>
-      </div>
-    </main>
+    <div className="body">
+      {loading ? (
+        <h1>Actualizando productos...</h1>
+      ) : (
+        products.map((prod) => (
+          <div key={prod.id} className="card w-50 mt-5">
+            <div className="card-header">{prod.name}</div>
+            <div className="card-body">
+              <img src={prod.foto} alt="foto" />
+              {prod.price}
+            </div>
+          </div>
+        ))
+      )}
+    </div>
   );
 }
 

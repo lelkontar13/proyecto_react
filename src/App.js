@@ -1,4 +1,4 @@
-import "./App.css";
+import "./components/Entrega/NavBar.css";
 import NavBar from "./components/Entrega/NavBar";
 import ItemsListContainer from "./container/ItemsListContainer";
 

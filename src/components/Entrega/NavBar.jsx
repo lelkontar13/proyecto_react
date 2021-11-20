@@ -1,6 +1,6 @@
 import React from "react";
 import Beirut from "../../img/Beirut.png";
-import Carrito from "../../img/carrito.jpg";
+import Carrito from "../../img/carrito.png";
 
 function NavBar() {
   return (
