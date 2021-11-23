@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import Itemlist from "../components/Entrega/Itemlist";
 import { getFetch } from "../helpers/getFetch";
 
 function ItemsListContainer() {
@@ -25,15 +26,7 @@ function ItemsListContainer() {
       {loading ? (
         <h1>Actualizando productos...</h1>
       ) : (
-        products.map((prod) => (
-          <div key={prod.id} className="card w-50 mt-5">
-            <div className="card-header">{prod.name}</div>
-            <div className="card-body">
-              <img src={prod.foto} alt="foto" />
-              {prod.price}
-            </div>
-          </div>
-        ))
+        <Itemlist products={products} />
       )}
     </div>
   );

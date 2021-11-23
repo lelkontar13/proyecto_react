@@ -11,19 +11,9 @@ import Baklawa from "../img/baklawa.png";
 
 const productos = [
   { id: 1, foto: Sfiha, name: "Sfiha x2", price: 280 },
-  {
-    id: 2,
-    foto: FatayC,
-    name: "Fatay de carne x2",
-    price: 280,
-  },
+  { id: 2, foto: FatayC, name: "Fatay de carne x2", price: 280 },
   { id: 3, foto: Falafel, name: "Falafel x6", price: 380 },
-  {
-    id: 4,
-    foto: KebbeH,
-    name: "Kebbe al horno",
-    price: 500,
-  },
+  { id: 4, foto: KebbeH, name: "Kebbe al horno", price: 500 },
   { id: 5, foto: Hummus, name: "Hummus", price: 280 },
   { id: 6, foto: Tabule, name: "Tabule", price: 480 },
   { id: 7, foto: Shanklish, name: "Shanklish", price: 350 },
