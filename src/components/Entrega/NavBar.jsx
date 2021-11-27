@@ -1,6 +1,7 @@
 import React from "react";
 import Beirut from "../../img/Beirut.png";
 import Carrito from "../../img/carrito.png";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
@@ -11,42 +12,25 @@ function NavBar() {
 
       <div class="conteinerNav">
         <nav class="navbar navbar-expand-lg navbar-dark">
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="menu">
-              <li class="nav-item">
-                <a class="nav-link" href="Index.html">
-                  Inicio
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Beirut.html">
-                  Beirut
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Menu.html">
-                  Menú
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Encontranos.html">
-                  Encontranos
-                </a>
-              </li>
-              <li class="nav-item">
-                <img id="carrito" src={Carrito} alt="Carrito" />
-              </li>
+              <Link to="/">
+                <li class="nav-item">Inicio</li>
+              </Link>
+              <Link to="/beirut">
+                <li class="nav-item">Beirut</li>
+              </Link>
+              <Link to="/menu">
+                <li class="nav-item">Menú</li>
+              </Link>
+              <Link to="/encontranos">
+                <li class="nav-item">Encontranos</li>
+              </Link>
+              <Link to="/cart">
+                <li class="nav-item">
+                  <img id="carrito" src={Carrito} alt="Carrito" />
+                </li>
+              </Link>
             </ul>
           </div>
         </nav>

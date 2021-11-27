@@ -17,15 +17,10 @@ header .conteinerNav li {
   display: inline;
   padding-left: 20px;
   padding-right: 20px;
-}
-header .conteinerNav li a {
   color: #cee0d4;
   font-size: 32px;
   font-family: "Merienda", cursive;
   text-decoration: none;
-}
-header .conteinerNav li a:hover {
-  color: rgba(68, 158, 95, 0.89);
 }
 
 .body {
@@ -33,4 +28,57 @@ header .conteinerNav li a:hover {
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
+}
+
+.cuerpo .textoMain {
+  color: #cee0d4;
+  font-size: 70px;
+  font-family: "Merienda", cursive;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.cuerpo .whatsapp {
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-end;
+  padding-top: 60px;
+  padding-bottom: 50px;
+}
+.cuerpo .whatsapp #logoWhatsapp {
+  height: 50px;
+  width: 50px;
+}
+
+.cuerpo .mapa {
+  display: flex;
+  justify-content: center;
+}
+.cuerpo .mapa #medidasMapa {
+  height: 480px;
+  width: 1000px;
+  padding-bottom: 50px;
+}
+
+.cuerpo .tituloHistoria {
+  color: #cee0d4;
+  font-size: 28px;
+  font-family: "Merienda", cursive;
+  padding-top: 30px;
+  padding-left: 40px;
+  padding-bottom: 30px;
+  text-decoration: underline;
+}
+
+.cuerpo .textoHistoria {
+  color: #cee0d4;
+  font-size: 25px;
+  font-family: "Merienda", cursive;
+  display: flex;
+  align-content: center;
+  padding-left: 40px;
+  padding-bottom: 140px;
 }

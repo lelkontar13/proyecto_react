@@ -6,10 +6,11 @@ function Itemlist(props) {
       {props.products.map((prod) => (
         <Item
           id={prod.id}
-          name={prod.name}
-          precio={prod.price}
+          nombre={prod.nombre}
+          precio={prod.precio}
           foto={prod.foto}
           stock={prod.stock}
+          categoria={prod.categoria}
         />
       ))}
       ;
