@@ -9,6 +9,7 @@ function Itemlist(props) {
           name={prod.name}
           precio={prod.price}
           foto={prod.foto}
+          stock={prod.stock}
         />
       ))}
       ;

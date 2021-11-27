@@ -1,4 +1,4 @@
-const Boton = ({ buttonText = "Soy Boton" }) => {
+const Boton = ({ buttonText = "Agregar" }) => {
   console.log("Boton");
   return (
     <>
