@@ -7,28 +7,34 @@ import Encontranos from "./components/Entrega/Encontranos";
 import ItemsListContainer from "./container/ItemsListContainer";
 import ItemDetailCointainer from "./container/ItemDetailContainer";
 import { Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
+import CartContextProvider from "./context/CartContext";
 
 function App() {
   return (
     <div className="App-background">
-      <NavBar />
-      <Routes>
-        <Route exact path="/" element={<Inicio />} />
-        <Route exact path="/beirut" element={<Beirut />} />
-        <Route exact path="/encontranos" element={<Encontranos />} />
-        <Route
-          exact
-          path="/menu/categoria/:idCategoria"
-          element={<ItemsListContainer />}
-        />
-        <Route
-          exact
-          path="/menu/detalle/:idPlato"
-          element={<ItemDetailCointainer />}
-        />
-        <Route exact path="/menu" element={<ItemsListContainer />} />
-        <Route exact path="/cart" element={<Cart />} />
-      </Routes>
+      <CartContextProvider>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route exact path="/" element={<Inicio />} />
+            <Route exact path="/beirut" element={<Beirut />} />
+            <Route exact path="/encontranos" element={<Encontranos />} />
+            <Route
+              exact
+              path="/menu/categoria/:idCategoria"
+              element={<ItemsListContainer />}
+            />
+            <Route
+              exact
+              path="/menu/detalle/:idPlato"
+              element={<ItemDetailCointainer />}
+            />
+            <Route exact path="/menu" element={<ItemsListContainer />} />
+            <Route exact path="/cart" element={<Cart />} />
+          </Routes>
+        </BrowserRouter>
+      </CartContextProvider>
     </div>
   );
 }

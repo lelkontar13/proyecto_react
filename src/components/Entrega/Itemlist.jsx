@@ -11,6 +11,7 @@ function Itemlist(props) {
           foto={prod.foto}
           stock={prod.stock}
           categoria={prod.categoria}
+          detalle={prod.detalle}
         />
       ))}
       ;

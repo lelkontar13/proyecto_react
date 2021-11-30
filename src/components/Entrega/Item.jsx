@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useCartContext } from "../../context/CartContext";
 
 function Item(props) {
   const agregados = useState(0);
@@ -17,6 +18,13 @@ function Item(props) {
     }
   };
 
+  const { cartList, agregarProducto } = useCartContext();
+
+  function onAdd(cant) {
+    agregarProducto({ item: props.detalle, cantidad: cant });
+  }
+  console.log(cartList);
+
   return (
     <div key={props.id} className="card w-50 mt-5">
       <div className="card-header">
@@ -29,6 +37,8 @@ function Item(props) {
           <button onClick={handlerAdd}>Agregar</button>
           {count}
           <button onClick={handlerSubtract}>Quitar</button>
+          <br />
+          <button onClick={() => onAdd(3)}>Agregar Carrito</button>
         </div>
         <Link to={`/menu/detalle/${props.id}`}>
           <p>Detalle</p>

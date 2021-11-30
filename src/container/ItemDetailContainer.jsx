@@ -1,15 +1,45 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import ItemDetail from "../components/Entrega/ItemDetail";
+import { getFetch } from "../helpers/getFetch";
+import { useParams } from "react-router-dom";
 
-const ItemDetailContainer = (props) => {
+const ItemDetailContainer = () => {
+  const [detalle, setDetalle] = useState({});
+  const [loading, setLoading] = useState(true);
+  const { idPlato } = useParams();
+
+  useEffect(() => {
+    if (idPlato) {
+      getFetch
+        .then((data) => {
+          console.log("Llamada");
+          setDetalle(data.find((prod) => prod.id === idPlato));
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
+    } else {
+      getFetch
+        .then((data) => {
+          console.log("Llamada");
+          setDetalle(data);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
+    }
+
+    return () => {
+      console.log("clean");
+    };
+  }, [idPlato]);
+
   return (
-    <div class="cuerpo">
-      <div class="tituloHistoria">
-        <h2>{props.nombre}</h2>
-      </div>
-      <img src={props.foto} alt="foto" />
-      <div class="textoHistoria">
-        <p>{props.detalle}</p>
-      </div>
+    <div className="body">
+      {loading ? (
+        <h1>Actualizando detalle...</h1>
+      ) : (
+        <ItemDetail detalle={detalle} />
+      )}
     </div>
   );
 };

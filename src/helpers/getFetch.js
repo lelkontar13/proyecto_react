@@ -108,3 +108,9 @@ export const getFetch = new Promise((aceptado, rechazada) => {
     aceptado(productos);
   }, 2000);
 });
+
+export const getFetchBis = new Promise((aceptado) => {
+  setTimeout(() => {
+    aceptado(productos);
+  }, 3000);
+});
