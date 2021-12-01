@@ -14,7 +14,7 @@ const ItemDetailContainer = () => {
       getFetch
         .then((data) => {
           console.log("Llamada");
-          setDetalle(data.find((prod) => prod.id === idPlato));
+          setDetalle(data.find((prod) => prod.id === Number(idPlato)));
         })
         .catch((err) => console.log(err))
         .finally(() => setLoading(false));
@@ -32,6 +32,8 @@ const ItemDetailContainer = () => {
       console.log("clean");
     };
   }, [idPlato]);
+
+  console.log(idPlato);
 
   return (
     <div className="body">
