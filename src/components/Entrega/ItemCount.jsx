@@ -20,18 +20,31 @@ const ItemCount = (props) => {
 
   const { cartList, agregarProducto } = useCartContext();
 
+  const [addToCartButton, setAddToCartButton] = useState(true);
+
   function onAdd(cant) {
     agregarProducto({ item: props.nombre, cantidad: cant });
+    setAddToCartButton(false);
   }
 
   console.log(cartList);
+
   return (
     <div>
-      <button onClick={handlerAdd}>Agregar</button>
-      {count}
-      <button onClick={handlerSubtract}>Quitar</button>
-      <br />
-      <button onClick={() => onAdd(count)}>Agregar Carrito</button>
+      {addToCartButton ? (
+        <div>
+          <button onClick={handlerAdd}>Agregar</button>
+          {count}
+          <button onClick={handlerSubtract}>Quitar</button>
+          <br />
+          <button onClick={() => onAdd(count)}>Agregar Carrito</button>
+        </div>
+      ) : (
+        <div>
+          <button> Finalizar Compra</button>
+          <button>Ir al carrito</button>
+        </div>
+      )}
     </div>
   );
 };
