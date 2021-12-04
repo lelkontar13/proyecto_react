@@ -21,7 +21,28 @@ function NavBar() {
                 <li class="nav-item">Beirut</li>
               </Link>
               <Link to="/menu">
-                <li class="nav-item">Menú</li>
+                <li
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Menú
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <Link to="/menu/categoria/salado">
+                      <li class="dropdown-item" href="#">
+                        Salado
+                      </li>
+                    </Link>
+                    <Link to="/menu/categoria/dulce">
+                      <li class="dropdown-item" href="#">
+                        Dulce
+                      </li>
+                    </Link>
+                  </ul>
+                </li>
               </Link>
               <Link to="/encontranos">
                 <li class="nav-item">Encontranos</li>
