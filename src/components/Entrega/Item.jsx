@@ -14,6 +14,8 @@ function Item(props) {
           stock={props.stock}
           detalle={props.detalle}
           nombre={props.nombre}
+          precio={props.precio}
+          id={props.id}
         />
         <Link to={`/menu/detalle/${props.id}`}>
           <p>Detalle</p>

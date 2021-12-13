@@ -1,8 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Itemlist from "../components/Entrega/Itemlist";
-import { getFetch } from "../helpers/getFetch";
+//import { getFetch } from "../helpers/getFetch";
 import { useParams } from "react-router-dom";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from "../firebase/firebase";
 
 function ItemsListContainer() {
   const [products, setProducts] = useState([]);
@@ -10,28 +12,30 @@ function ItemsListContainer() {
 
   const { idCategoria } = useParams();
 
-  useEffect(() => {
-    if (idCategoria) {
-      getFetch
-        .then((data) => {
-          console.log("Llamada");
-          setProducts(data.filter((prod) => prod.categoria === idCategoria));
-        })
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
+  async function obtenerProductos() {
+    const q = query(collection(db, "productos"));
+    console.log(idCategoria);
+    if (!idCategoria) {
+      const querySnapshot = await getDocs(q);
+      console.log({ querySnapshot });
+      setProducts(
+        querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      );
     } else {
-      getFetch
-        .then((data) => {
-          console.log("Llamada");
-          setProducts(data);
-        })
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
+      const qFiltrado = query(
+        collection(db, "productos"),
+        where("categoria", "==", idCategoria)
+      );
+      const querySnapshot = await getDocs(qFiltrado);
+      setProducts(
+        querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+      );
     }
+    setLoading(false);
+  }
 
-    return () => {
-      console.log("clean");
-    };
+  useEffect(() => {
+    obtenerProductos();
   }, [idCategoria]);
 
   return (

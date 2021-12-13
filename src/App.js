@@ -6,8 +6,7 @@ import Beirut from "./components/Entrega/Beirut";
 import Encontranos from "./components/Entrega/Encontranos";
 import ItemsListContainer from "./container/ItemsListContainer";
 import ItemDetailCointainer from "./container/ItemDetailContainer";
-import { Routes, Route } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import CartContextProvider from "./context/CartContext";
 
 function App() {

@@ -23,11 +23,18 @@ const ItemCount = (props) => {
   const [addToCartButton, setAddToCartButton] = useState(true);
 
   function onAdd(cant) {
-    agregarProducto({ item: props.nombre, cantidad: cant });
+    const duplicado = cartList.find((item) => item.id === props.id);
+    if (duplicado) {
+      return alert("Este producto ya esta en el carrito");
+    }
+    agregarProducto({
+      id: props.id,
+      item: props.nombre,
+      cantidad: cant,
+      precio: props.precio,
+    });
     setAddToCartButton(false);
   }
-
-  console.log(cartList);
 
   return (
     <div>

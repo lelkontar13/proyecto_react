@@ -1,7 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import ItemDetail from "../components/Entrega/ItemDetail";
-import { getFetch } from "../helpers/getFetch";
+import { db } from "../firebase/firebase";
+import { doc, getDoc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 
 const ItemDetailContainer = () => {
@@ -9,31 +10,23 @@ const ItemDetailContainer = () => {
   const [loading, setLoading] = useState(true);
   const { idPlato } = useParams();
 
-  useEffect(() => {
-    if (idPlato) {
-      getFetch
-        .then((data) => {
-          console.log("Llamada");
-          setDetalle(data.find((prod) => prod.id === Number(idPlato)));
-        })
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
+  async function getDocument() {
+    const docRef = doc(db, "productos", idPlato);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+      setDetalle({ id: docSnap.id, ...docSnap.data() });
     } else {
-      getFetch
-        .then((data) => {
-          console.log("Llamada");
-          setDetalle(data);
-        })
-        .catch((err) => console.log(err))
-        .finally(() => setLoading(false));
+      console.log("No such document!");
     }
+    setLoading(false);
+  }
 
-    return () => {
-      console.log("clean");
-    };
-  }, [idPlato]);
-
-  console.log(idPlato);
+  useEffect(() => {
+    setLoading(true);
+    getDocument();
+  }, []);
 
   return (
     <div className="body">
