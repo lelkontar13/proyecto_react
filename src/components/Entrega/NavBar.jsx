@@ -2,6 +2,7 @@ import React from "react";
 import Beirut from "../../img/Beirut.png";
 import Carrito from "../../img/carrito.png";
 import { Link } from "react-router-dom";
+import CartWidget from "./CartWidget";
 
 function NavBar() {
   return (
@@ -49,7 +50,7 @@ function NavBar() {
               </Link>
               <Link to="/cart">
                 <li class="nav-item">
-                  <img id="carrito" src={Carrito} alt="Carrito" />
+                  <CartWidget />
                 </li>
               </Link>
             </ul>

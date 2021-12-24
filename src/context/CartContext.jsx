@@ -15,12 +15,16 @@ function CartContextProvider({ children }) {
     setCartList([]);
   };
 
+  const eliminarProducto = (id) => {
+    setCartList(cartList.filter((item) => item.id !== id));
+  };
   return (
     <CartContext.Provider
       value={{
         cartList,
         agregarProducto,
         vaciarCarrito,
+        eliminarProducto,
       }}
     >
       {children}
