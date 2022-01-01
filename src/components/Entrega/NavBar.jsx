@@ -1,6 +1,5 @@
 import React from "react";
 import Beirut from "../../img/Beirut.png";
-import Carrito from "../../img/carrito.png";
 import { Link } from "react-router-dom";
 import CartWidget from "./CartWidget";
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useCartContext } from "../../context/CartContext";
+import { Link } from "react-router-dom";
 
 const ItemCount = (props) => {
   const agregados = useState(0);
@@ -48,8 +49,12 @@ const ItemCount = (props) => {
         </div>
       ) : (
         <div>
-          <button> Finalizar Compra</button>
-          <button>Ir al carrito</button>
+          <Link to="/cart">
+            <button> Finalizar Compra</button>
+          </Link>
+          <Link to="/cart">
+            <button>Ir al carrito</button>
+          </Link>
         </div>
       )}
     </div>
