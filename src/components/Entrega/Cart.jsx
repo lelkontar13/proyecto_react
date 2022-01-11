@@ -2,18 +2,13 @@ import React from "react";
 import { useCartContext } from "../../context/CartContext";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "firebase/firestore";
-import firebase from "firebase";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
-
 function Cart() {
   const [idOrder, setIdOrder] = useState("");
-
   const { cartList, vaciarCarrito, eliminarProducto, precioTotal } =
     useCartContext();
-
   const [total, setTotal] = useState(0);
-
   useEffect(() => {
     let temp = 0;
     cartList.map((prod) => {
@@ -21,54 +16,21 @@ function Cart() {
     });
     setTotal(temp);
   }, []);
-
-  const generarOrden = (e) => {
+  const generarOrden = async (e) => {
     e.preventDefault();
-
     const orden = {};
-    orden.date = firebase.firestore.Timestamp.fromDate(new Date());
-
+    orden.date = Timestamp.fromDate(new Date());
     orden.comprador = { nombre: "Lucia", email: "lucia_elkontar@hotmail.com" };
     orden.total = precioTotal();
-
     orden.items = cartList.map((cartItem) => {
       const id = cartItem.id;
       const nombre = cartItem.id;
       const precio = cartItem.id;
-
       return { id, nombre, precio };
     });
-
-    db.collection("orders")
-      .add(orden)
-      .then((resp) => setIdOrder(resp.id));
-
-    const itemsToUpdate = db.collection("items").where(
-      firebase.firestore.FieldPath.documentId(),
-      "in",
-      cartList.map((i) => i.id)
-    );
-
-    const batch = db.batch();
-
-    itemsToUpdate
-      .get()
-
-      .then((collection) => {
-        collection.docs.forEach((docSnapshot) => {
-          batch.update(docSnapshot.ref, {
-            stock:
-              docSnapshot.data().stock -
-              cartList.find((item) => item.id === docSnapshot.id).cantidad,
-          });
-        });
-
-        batch.commit().then((res) => {
-          console.log("se actualizo");
-        });
-      });
+    const addOrder = await addDoc(collection(db, "orders"), orden);
+    setIdOrder(addOrder.id);
   };
-
   return (
     <div>
       {cartList.length ? (
@@ -89,7 +51,7 @@ function Cart() {
           ))}
           <h1>{`Precio total: ${precioTotal()}`}</h1>
           <button onClick={() => vaciarCarrito()}>Vaciar Carrito</button>
-          <button onClick={() => generarOrden()}>Generar Orden</button>
+          <button onClick={(e) => generarOrden(e)}>Generar Orden</button>
         </div>
       ) : (
         <div>
@@ -102,5 +64,4 @@ function Cart() {
     </div>
   );
 }
-
 export default Cart;
