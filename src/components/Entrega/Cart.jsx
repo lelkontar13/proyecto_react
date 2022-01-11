@@ -49,7 +49,7 @@ function Cart() {
               <button onClick={() => eliminarProducto(prod.id)}>X</button>
             </div>
           ))}
-          <h1>{`Precio total: ${precioTotal()}`}</h1>
+          <h1>{`Precio total: $ ${precioTotal()}`}</h1>
           <button onClick={() => vaciarCarrito()}>Vaciar Carrito</button>
           <button onClick={(e) => generarOrden(e)}>Generar Orden</button>
         </div>
