@@ -18,6 +18,13 @@ function CartContextProvider({ children }) {
   const eliminarProducto = (id) => {
     setCartList(cartList.filter((item) => item.id !== id));
   };
+
+  const precioTotal = (item) => {
+    return cartList.reduce(
+      (acum, item) => acum + item.cantidad * item.precio,
+      0
+    );
+  };
   return (
     <CartContext.Provider
       value={{
@@ -25,6 +32,7 @@ function CartContextProvider({ children }) {
         agregarProducto,
         vaciarCarrito,
         eliminarProducto,
+        precioTotal,
       }}
     >
       {children}
