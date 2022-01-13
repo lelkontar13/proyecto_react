@@ -4,8 +4,7 @@ import { useCartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
 
 const ItemCount = (props) => {
-  const agregados = useState(0);
-  const [count, setCount] = agregados;
+  const [count, setCount] = useState(1);
 
   const handlerAdd = () => {
     if (count < props.stock) {
@@ -14,28 +13,24 @@ const ItemCount = (props) => {
   };
 
   const handlerSubtract = () => {
-    if (count !== 0) {
+    if (count !== 1) {
       setCount(count - 1);
     }
   };
 
-  const { cartList, agregarProducto } = useCartContext();
+  const { agregarProducto } = useCartContext();
 
   const [addToCartButton, setAddToCartButton] = useState(true);
 
-  function onAdd(cant) {
-    const duplicado = cartList.find((item) => item.id === props.id);
-    if (duplicado) {
-      return alert("Este producto ya esta en el carrito");
-    }
+  const onAdd = () => {
     agregarProducto({
       id: props.id,
       item: props.nombre,
-      cantidad: cant,
+      cantidad: count,
       precio: props.precio,
     });
     setAddToCartButton(false);
-  }
+  };
 
   return (
     <div>
@@ -45,13 +40,10 @@ const ItemCount = (props) => {
           {count}
           <button onClick={handlerSubtract}>Quitar</button>
           <br />
-          <button onClick={() => onAdd(count)}>Agregar Carrito</button>
+          <button onClick={onAdd}>Agregar Carrito</button>
         </div>
       ) : (
         <div>
-          <Link to="/cart">
-            <button> Finalizar Compra</button>
-          </Link>
           <Link to="/cart">
             <button>Ir al carrito</button>
           </Link>

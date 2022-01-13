@@ -4,11 +4,15 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
+
 function Cart() {
   const [idOrder, setIdOrder] = useState("");
+
   const { cartList, vaciarCarrito, eliminarProducto, precioTotal } =
     useCartContext();
+
   const [total, setTotal] = useState(0);
+
   useEffect(() => {
     let temp = 0;
     cartList.map((prod) => {
@@ -16,6 +20,7 @@ function Cart() {
     });
     setTotal(temp);
   }, []);
+
   const generarOrden = async (e) => {
     e.preventDefault();
     const orden = {};
@@ -24,8 +29,8 @@ function Cart() {
     orden.total = precioTotal();
     orden.items = cartList.map((cartItem) => {
       const id = cartItem.id;
-      const nombre = cartItem.id;
-      const precio = cartItem.id;
+      const nombre = cartItem.item;
+      const precio = cartItem.precio;
       return { id, nombre, precio };
     });
     const addOrder = await addDoc(collection(db, "orders"), orden);

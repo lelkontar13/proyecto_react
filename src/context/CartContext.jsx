@@ -8,7 +8,19 @@ function CartContextProvider({ children }) {
   const [cartList, setCartList] = useState([]);
 
   const agregarProducto = (item) => {
-    setCartList([...cartList, item]);
+    const index = cartList.findIndex((i) => i.id === item.id);
+
+    if (index > -1) {
+      const agregado = cartList[index].cantidad;
+
+      cartList.splice(index, 1);
+      setCartList([
+        ...cartList,
+        { ...item, cantidad: item.cantidad + agregado },
+      ]);
+    } else {
+      setCartList([...cartList, { ...item, cantidad: item.cantidad }]);
+    }
   };
 
   const vaciarCarrito = () => {
