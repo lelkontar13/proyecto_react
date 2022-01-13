@@ -25,7 +25,13 @@ function Cart() {
     e.preventDefault();
     const orden = {};
     orden.date = Timestamp.fromDate(new Date());
-    orden.comprador = { nombre: "Lucia", email: "lucia_elkontar@hotmail.com" };
+    orden.comprador = {
+      nombre: "Lucia",
+      apellido: "El Kontar",
+      telefono: "12345678",
+      email: "lucia_elkontar@hotmail.com",
+      validar: "lucia_elkontar@hotmail.com",
+    };
     orden.total = precioTotal();
     orden.items = cartList.map((cartItem) => {
       const id = cartItem.id;
@@ -36,6 +42,7 @@ function Cart() {
     const addOrder = await addDoc(collection(db, "orders"), orden);
     setIdOrder(addOrder.id);
   };
+
   return (
     <div>
       {cartList.length ? (
@@ -56,7 +63,14 @@ function Cart() {
           ))}
           <h1>{`Precio total: $ ${precioTotal()}`}</h1>
           <button onClick={() => vaciarCarrito()}>Vaciar Carrito</button>
-          <button onClick={(e) => generarOrden(e)}>Generar Orden</button>
+          <form onSubmit={generarOrden}>
+            <input type="text" name="nombre" placeholder="nombre" />
+            <input type="text" name="apellido" placeholder="apellido" />
+            <input type="text" name="telefono" placeholder="telefono" />
+            <input type="email" name="email" placeholder="email" />
+            <input type="email" name="validar" placeholder="validar email" />
+            <button>Generar Orden</button>
+          </form>
         </div>
       ) : (
         <div>

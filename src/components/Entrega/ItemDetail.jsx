@@ -1,3 +1,5 @@
+import ItemCount from "./ItemCount";
+
 const ItemDetail = ({ detalle }) => {
   return (
     <div key={detalle.id} className="card w-50 mt-5">
@@ -8,6 +10,7 @@ const ItemDetail = ({ detalle }) => {
         <img src={detalle.foto} alt="foto" />
         {detalle.detalle}
       </div>
+      <ItemCount />
     </div>
   );
 };
