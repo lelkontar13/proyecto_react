@@ -25,13 +25,7 @@ function Cart() {
     e.preventDefault();
     const orden = {};
     orden.date = Timestamp.fromDate(new Date());
-    orden.comprador = {
-      nombre: "Lucia",
-      apellido: "El Kontar",
-      telefono: "12345678",
-      email: "lucia_elkontar@hotmail.com",
-      validar: "lucia_elkontar@hotmail.com",
-    };
+    orden.comprador = datos;
     orden.total = precioTotal();
     orden.items = cartList.map((cartItem) => {
       const id = cartItem.id;
@@ -43,17 +37,18 @@ function Cart() {
     setIdOrder(addOrder.id);
   };
 
+  const [datos, setDatos] = useState([]);
+
+  const handleChange = (event) => {
+    setDatos({ ...datos, [event.target.name]: event.target.value });
+  };
+
   return (
     <div>
       {cartList.length ? (
         <div>
           {cartList.map((prod) => (
             <div>
-              <section>
-                {idOrder !== "" && (
-                  <label>El id de su orden es : {idOrder}</label>
-                )}
-              </section>
               <li key={prod.id}>
                 {prod.cantidad} de {prod.item} ${prod.precio} -> total: $
                 {prod.cantidad * prod.precio}
@@ -63,7 +58,8 @@ function Cart() {
           ))}
           <h1>{`Precio total: $ ${precioTotal()}`}</h1>
           <button onClick={() => vaciarCarrito()}>Vaciar Carrito</button>
-          <form onSubmit={generarOrden}>
+          <form onSubmit={generarOrden} onChange={handleChange}>
+            Datos Personales={handleChange}
             <input type="text" name="nombre" placeholder="nombre" />
             <input type="text" name="apellido" placeholder="apellido" />
             <input type="text" name="telefono" placeholder="telefono" />
@@ -71,6 +67,9 @@ function Cart() {
             <input type="email" name="validar" placeholder="validar email" />
             <button>Generar Orden</button>
           </form>
+          <section>
+            {idOrder !== "" && <label>El id de su orden es : {idOrder}</label>}
+          </section>
         </div>
       ) : (
         <div>
